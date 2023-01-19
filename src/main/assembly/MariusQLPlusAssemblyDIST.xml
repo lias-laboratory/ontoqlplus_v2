@@ -1,0 +1,36 @@
+<assembly>
+	<id>dist</id>
+	<includeBaseDirectory>false</includeBaseDirectory>
+	<formats>
+		<format>zip</format>
+	</formats>
+	<fileSets>
+		<fileSet>
+			<directory>src/main/config/</directory>
+			<outputDirectory>config</outputDirectory>
+		</fileSet>		
+		<fileSet>
+			<directory>target/</directory>
+			<outputDirectory>/logs</outputDirectory>
+			<excludes>
+				<exclude>**/*</exclude>
+			</excludes>
+		</fileSet>
+	</fileSets>
+	<files>
+		<file>
+			<source>src/main/bin/mariusqlplus.bat</source>
+			<destName>ontoqlplus.bat</destName>
+			<outputDirectory>bin</outputDirectory>
+		</file>
+		<file>
+			<source>${project.basedir}/LICENSE</source>
+		</file>
+	</files>
+	<dependencySets>
+		<dependencySet>
+			<useProjectArtifact>true</useProjectArtifact>
+			<outputDirectory>lib</outputDirectory>
+		</dependencySet>
+	</dependencySets>
+</assembly>

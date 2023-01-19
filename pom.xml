@@ -1,0 +1,112 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>fr.ensma.lias</groupId>
+	<artifactId>mariusqlplus</artifactId>
+	<version>2.1-SNAPSHOT</version>
+	<description>MariusQLPlus is a MariusQL editor.</description>
+	<properties>
+		<maven.compiler.source>1.8</maven.compiler.source>
+		<maven.compiler.target>1.8</maven.compiler.target>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<mariusql.version>2.1-SNAPSHOT</mariusql.version>
+		<postgresql.version>8.3-603.jdbc3</postgresql.version>
+		<hsqldb.version>2.3.1</hsqldb.version>
+		<maven.jar.version>2.4</maven.jar.version>
+	</properties>
+	<dependencies>
+		<dependency>
+			<groupId>fr.ensma.lias</groupId>
+			<artifactId>mariusql</artifactId>
+			<version>${mariusql.version}</version>
+			
+		</dependency>
+
+		<!-- PostgreSQL -->
+		<dependency>
+			<groupId>postgresql</groupId>
+			<artifactId>postgresql</artifactId>
+			<version>${postgresql.version}</version>
+		</dependency>
+
+		<!-- HSQLDB -->
+		<dependency>
+			<groupId>org.hsqldb</groupId>
+			<artifactId>hsqldb</artifactId>
+			<version>${hsqldb.version}</version>
+		</dependency>
+	</dependencies>
+	<developers>
+		<developer>
+			<id>jeans</id>
+			<name>JEAN Stéphane</name>
+			<email>jean@ensma.fr</email>
+			<organization>LIAS / ENSMA</organization>
+			<url>http://www.lias-lab.fr/members/stephanejean</url>
+			<roles>
+				<role>Leader</role>
+				<role>Developer</role>
+			</roles>
+		</developer>
+		<developer>
+			<id>baronm</id>
+			<name>BARON Mickaël</name>
+			<email>baron@ensma.fr</email>
+			<organization>LIAS / ENSMA</organization>
+			<url>http://www.lias-lab.fr/members/mickaelbaron</url>
+			<roles>
+				<role>Leader</role>
+				<role>Integrator</role>
+				<role>Developer</role>
+			</roles>
+		</developer>
+		<developer>
+			<id>cassairv</id>
+			<name>CASSAIR Valentin</name>
+			<roles>
+				<role>Developer</role>
+			</roles>
+		</developer>
+	</developers>
+	<build>
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+			</resource>
+		</resources>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<version>${maven.jar.version}</version>
+				<configuration>
+					<archive>
+						<manifest>
+							<addClasspath>true</addClasspath>
+							<mainClass>fr.ensma.lias.mariusqlplus.main.Main</mainClass>
+						</manifest>
+					</archive>
+				</configuration>
+			</plugin>
+			<plugin>
+				<artifactId>maven-assembly-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>create-zip-package</id>
+						<phase>package</phase>
+						<goals>
+							<goal>single</goal>
+						</goals>
+						<configuration>
+							<finalName>ontoqlplus-${project.version}</finalName>
+							<descriptors>
+								<descriptor>src/main/assembly/MariusQLPlusAssemblyDIST.xml</descriptor>
+							</descriptors>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+</project>
